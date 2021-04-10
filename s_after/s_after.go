@@ -47,7 +47,7 @@ func (c Circle) Area() float64 {
 type Outputter struct {}
 
 func (o Outputter) Text(s IShape) string {
-	return fmt.Sprintf("area  of the %s: %f", s.Name(), s.Area())
+	return fmt.Sprintf("Area of the %s: %f", s.Name(), s.Area())
 }
 
 func (o Outputter) JSON(s IShape) string {
