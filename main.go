@@ -7,6 +7,8 @@ import (
 	SAfter "github.com/johnatasr/GO-SOLID/s_after"
 	OBefore "github.com/johnatasr/GO-SOLID/o_before"
 	OAfter "github.com/johnatasr/GO-SOLID/o_after"
+	IBefore "github.com/johnatasr/GO-SOLID/i_before"
+	IAfter "github.com/johnatasr/GO-SOLID/i_after"
 )
 
 func main() {
@@ -31,6 +33,13 @@ func main() {
 
 	fmt.Println("Area sum:", calculator.AreaSum(ob_square, ob_circle))
 
+	//Old I
+	lb_square := IBefore.CreateSquare(3)
+	lb_cube := IBefore.CreateCube(4)
+
+	fmt.Println(IBefore.AreaSum(lb_square, lb_cube))
+	fmt.Println(IBefore.AreaVolumeSum(lb_square, lb_cube))
+
 
 	fmt.Println("============After SOLID============")
 	fmt.Println("===================================")
@@ -54,5 +63,15 @@ func main() {
 	oa_triangule := OAfter.CreateTriangule(3, 7)
 	calc := OAfter.Calculator{}
 	fmt.Println("area sum:", calc.AreaSum(oa_circle, oa_square, oa_triangule))
+
+	fmt.Println()
+	fmt.Println("=====Interfaces implementation=====")
+
+	ia_square1 := IAfter.CreateSquare(5)
+	ia_square2 := IAfter.CreateSquare(4)
+	ia_cube1 := IAfter.CreateCube(ia_square1)
+	ia_cube2 := IAfter.CreateCube(ia_square2)
+	fmt.Println(IAfter.AreaSum(ia_square1, ia_square2, ia_cube1, ia_cube2))
+	fmt.Println(IAfter.AreaVolumeSum(ia_cube1, ia_cube2))
 
 }
