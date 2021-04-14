@@ -52,4 +52,3 @@ func AreaVolumeSum(shapes ...IObject) float64 {
 	}
 	return sum
 }
-

@@ -3,12 +3,13 @@ package main
 import (
 	"fmt"
 
-	SBefore "github.com/johnatasr/GO-SOLID/s_before"
-	SAfter "github.com/johnatasr/GO-SOLID/s_after"
-	OBefore "github.com/johnatasr/GO-SOLID/o_before"
-	OAfter "github.com/johnatasr/GO-SOLID/o_after"
-	IBefore "github.com/johnatasr/GO-SOLID/i_before"
 	IAfter "github.com/johnatasr/GO-SOLID/i_after"
+	IBefore "github.com/johnatasr/GO-SOLID/i_before"
+	Liskov "github.com/johnatasr/GO-SOLID/liskov"
+	OAfter "github.com/johnatasr/GO-SOLID/o_after"
+	OBefore "github.com/johnatasr/GO-SOLID/o_before"
+	SAfter "github.com/johnatasr/GO-SOLID/s_after"
+	SBefore "github.com/johnatasr/GO-SOLID/s_before"
 )
 
 func main() {
@@ -40,7 +41,6 @@ func main() {
 	fmt.Println(IBefore.AreaSum(lb_square, lb_cube))
 	fmt.Println(IBefore.AreaVolumeSum(lb_square, lb_cube))
 
-
 	fmt.Println("============After SOLID============")
 	fmt.Println("===================================")
 	fmt.Println("======Single Responsabilitie=======")
@@ -63,6 +63,28 @@ func main() {
 	oa_triangule := OAfter.CreateTriangule(3, 7)
 	calc := OAfter.Calculator{}
 	fmt.Println("area sum:", calc.AreaSum(oa_circle, oa_square, oa_triangule))
+	fmt.Println()
+
+	fmt.Println("=========Liskov Principle===========")
+
+	human := Liskov.Human{Name: "Alex"}
+	student := Liskov.Student{
+		Human: Liskov.Human{Name: "Mike"},
+		Grades: map[string]int{
+			"Math":    8,
+			"English": 9,
+		},
+	}
+	teacher := Liskov.Teacher{
+		Human:  Liskov.Human{Name: "John"},
+		Degree: "CS",
+		Salary: 2000,
+	}
+
+	p := Liskov.Printer{}
+	p.Info(human)
+	p.Info(student)
+	p.Info(teacher)
 
 	fmt.Println()
 	fmt.Println("=====Interfaces implementation=====")
